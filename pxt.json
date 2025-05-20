@@ -1,11 +1,13 @@
 {
-    "name": "2024-p1a-alg-pxt-peewee-car-petrhiousek",
+    "name": "2024-p1a-alg-pxt-peewee-car-petrhiousek - Copy",
     "version": "0.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "pxt-magicbit-pca9685": "github:microbit-cz/pxt-magicbit-pca9685#1.0.0",
+        "pxt-sensors": "github:TomasKazda/pxt-sensors#a4146d725fe882187db670cb094772d4e747a220"
     },
     "files": [
         "README.md",
@@ -23,5 +25,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
