@@ -4,8 +4,9 @@ radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
 
 let expectedSender = -1584843917
-let sender
-let parts
+let sender;
+let parts;
+let x;
 
 radio.onReceivedString(function (received: string) {
     sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
@@ -34,8 +35,8 @@ radio.onReceivedString(function (received: string) {
             leftSpeed += x / 10
             rightSpeed -= x / 10
         } else if (x < -100) {
-            leftSpeed += x / 10
-            rightSpeed -= x / 10
+            leftSpeed -= x / 10
+            rightSpeed += x / 10
         }
 
         // Omezit rychlosti na povolený rozsah
