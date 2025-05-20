@@ -6,7 +6,6 @@ radio.setTransmitSerialNumber(true)
 let expectedSender = -1584843917
 let sender;
 let parts;
-let x;
 
 radio.onReceivedString(function (received: string) {
     sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
@@ -44,8 +43,9 @@ radio.onReceivedString(function (received: string) {
         rightSpeed = Math.constrain(rightSpeed, -255, 255)
 
         // Ovládání motorů PeeWee
-        PCAmotor.MotorRun(PCAmotor.Motors.M1, -2 * leftSpeed)
-        PCAmotor.MotorRun(PCAmotor.Motors.M4, rightSpeed)
+        PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
+        PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
+
     }
 
 })
