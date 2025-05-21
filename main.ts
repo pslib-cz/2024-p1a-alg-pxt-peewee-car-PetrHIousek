@@ -9,10 +9,10 @@ let ready: boolean = false
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
-    ready = true
     if(received === "stop") {
         ready = false
-    } else
+        basic.showString("W")
+    } else ready = true
     if (sender == expectedSender) {
         if(ready) {
             basic.clearScreen()
