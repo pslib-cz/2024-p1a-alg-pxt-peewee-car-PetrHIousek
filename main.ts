@@ -5,7 +5,9 @@ radio.setTransmitSerialNumber(true)
 
 let expectedSender = -1584843917;
 let ready: boolean;
-
+let y
+let z
+let x
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
@@ -22,9 +24,9 @@ radio.onReceivedString(function (received: string) {
             if (parts.length != 3) {
                 return
             }
-            let x = parseInt(parts[0])
-            let y = parseInt(parts[1])
-            let z = parseInt(parts[2])  // zatím se nepoužívá
+            x = parseInt(parts[0])
+            y = parseInt(parts[1])
+            z = parseInt(parts[2])  // zatím se nepoužívá
             // Převrácení osy Y
             y = -y
 
