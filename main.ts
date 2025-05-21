@@ -29,10 +29,10 @@ radio.onReceivedString(function (received: string) {
             // Úprava pro zatáčení podle X
             if (x > 100) {
                 leftSpeed += x / 10
-                rightSpeed -= x / 1
+                rightSpeed -= x / 8
             } else if (x < -100) {
                 leftSpeed += x / 10
-                rightSpeed -= x / 1
+                rightSpeed -= x / 8
             }
 
             // Ovládání motorů PeeWee
