@@ -12,6 +12,7 @@ radio.onReceivedString(function (received: string) {
     if(received === "stop") {
         ready = false
         basic.showString("G")
+        basic.pause(5000)
     } else ready = true
     if (sender == expectedSender) {
         if(ready) {
