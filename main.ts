@@ -3,18 +3,19 @@ radio.setFrequencyBand(39)
 radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
 
-let expectedSender = -1584843917
-let ready: boolean = false
+let expectedSender = -1584843917;
+let ready: boolean;
 
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
-    if(received === "stop") {
-        ready = false
-        basic.showString("G")
-        basic.pause(5000)
-    } else ready = true
     if (sender == expectedSender) {
+        if (received === "stop") {
+            ready = false
+            basic.pause(60)
+            PCAmotor.MotorStopAll()
+            basic.showString("G")
+        } else ready = true
         if(ready) {
             basic.clearScreen()
             let parts = received.split(",")
@@ -43,9 +44,6 @@ radio.onReceivedString(function (received: string) {
             // Ovládání motorů PeeWee
             PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
             PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
-        } else if(!ready) {
-            basic.pause(40)
-            PCAmotor.MotorStopAll()
         }
     }
 })
