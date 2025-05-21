@@ -48,11 +48,3 @@ radio.onReceivedString(function (received: string) {
         }
     }
 })
-
-
-radio.onReceivedNumber(function (onReceivedNumber: number) {
-    if (onReceivedNumber === 9989) {
-        basic.pause(40)
-        ready = false
-    }
-})
