@@ -6,8 +6,12 @@ radio.setTransmitSerialNumber(true)
 let expectedSender = -1584843917
 let ready: boolean = false
 
+
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
+    if(received === "stop") {
+        ready = false
+    } else
     ready = true
     if (sender == expectedSender) {
         if(ready) {
@@ -38,9 +42,13 @@ radio.onReceivedString(function (received: string) {
             // Ovládání motorů PeeWee
             PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
             PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
-        } else PCAmotor.MotorStopAll()
+        } else if(!ready) {
+            basic.pause(40)
+            PCAmotor.MotorStopAll()
+        }
     }
 })
+
 
 radio.onReceivedNumber(function (onReceivedNumber: number) {
     if (onReceivedNumber === 9989) {
