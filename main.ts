@@ -11,7 +11,7 @@ radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
     if(received === "stop") {
         ready = false
-        basic.showString("W")
+        basic.showString("G")
     } else ready = true
     if (sender == expectedSender) {
         if(ready) {
