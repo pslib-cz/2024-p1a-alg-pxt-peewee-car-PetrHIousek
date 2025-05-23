@@ -14,7 +14,7 @@ radio.onReceivedString(function (received: string) {
     if (sender == expectedSender) {
         if (received === "stop") {
             ready = false
-            basic.pause(60)
+            basic.pause(1000)
             PCAmotor.MotorStopAll()
             basic.showString("G")
         } else ready = true
@@ -41,7 +41,7 @@ radio.onReceivedString(function (received: string) {
                 rightSpeed -= x / 2
             }
 
-            PCAmotor.MotorRun(PCAmotor.Motors.M1, -rightSpeed)
+            PCAmotor.MotorRun(PCAmotor.Motors.M2, -rightSpeed)
             PCAmotor.MotorRun(PCAmotor.Motors.M4, -leftSpeed)
         }
     }
