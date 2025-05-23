@@ -3,7 +3,7 @@ radio.setFrequencyBand(39)
 radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
 
-let expectedSender = -1584843917;
+let expectedSender = 599237509;
 let ready: boolean;
 let y
 let z
@@ -26,15 +26,13 @@ radio.onReceivedString(function (received: string) {
             }
             x = parseInt(parts[0])
             y = parseInt(parts[1])
-            z = parseInt(parts[2])  // zatím se nepoužívá
-            // Převrácení osy Y
+            z = parseInt(parts[2])
+
             y = -y
 
-            // Výpočet základních rychlostí
             let leftSpeed = y / 4
             let rightSpeed = y / 4
 
-            // Úprava pro zatáčení podle X
             if (x > 100) {
                 leftSpeed += x / 10
                 rightSpeed -= x / 2
@@ -43,9 +41,8 @@ radio.onReceivedString(function (received: string) {
                 rightSpeed -= x / 2
             }
 
-            // Ovládání motorů PeeWee
-            PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
-            PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
+            PCAmotor.MotorRun(PCAmotor.Motors.M1, -rightSpeed)
+            PCAmotor.MotorRun(PCAmotor.Motors.M4, -leftSpeed)
         }
     }
 })
