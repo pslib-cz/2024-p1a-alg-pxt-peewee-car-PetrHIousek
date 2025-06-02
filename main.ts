@@ -19,13 +19,11 @@ radio.onReceivedString(function (received: string) {
     }
     let x = parseInt(parts[0])
     let y = parseInt(parts[1])
-    let z = parseInt(parts[2])  // zatím se nepoužívá
+    let z = parseInt(parts[2])
 
-    // Výpočet základních rychlostí
     let leftSpeed = y / 4
     let rightSpeed = y / 4
 
-    // Úprava pro zatáčení podle X
     if (x > 100) {
         leftSpeed += x / 10
         rightSpeed -= x / 1
@@ -34,11 +32,9 @@ radio.onReceivedString(function (received: string) {
         rightSpeed -= x / 1
     }
 
-    // Omezit rychlosti na povolený rozsah
     leftSpeed = Math.constrain(leftSpeed, -255, 255)
     rightSpeed = Math.constrain(rightSpeed, -255, 255)
 
-    // Ovládání motorů PeeWee
     PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
     PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
 })
