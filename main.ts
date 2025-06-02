@@ -2,15 +2,20 @@ radio.setGroup(12)
 radio.setFrequencyBand(39)
 radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
+Sensors.SetLightLevel()
 
 let expectedSender = 599237509;
 let ready: boolean;
-let y
-let z
-let x
+let y: number
+let z: number
+let x: number
+let leftSpeed: number
+let rightSpeed: number
+let parts
+let sender
 
 radio.onReceivedString(function (received: string) {
-    let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
+    sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
     if (sender == expectedSender) {
         if (received === "stop") {
             ready = false
@@ -20,7 +25,7 @@ radio.onReceivedString(function (received: string) {
         } else ready = true
         if(ready) {
             basic.clearScreen()
-            let parts = received.split(",")
+            parts = received.split(",")
             if (parts.length != 3) {
                 return
             }
@@ -30,8 +35,8 @@ radio.onReceivedString(function (received: string) {
 
             y = -y
 
-            let leftSpeed = y / 4
-            let rightSpeed = y / 4
+            leftSpeed = y / 4
+            rightSpeed = y / 4
 
             if (x > 100) {
                 leftSpeed += x / 10
