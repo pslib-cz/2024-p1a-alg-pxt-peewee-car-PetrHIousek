@@ -1,30 +1,30 @@
-radio.setGroup(12)
-radio.setFrequencyBand(39)
-radio.setTransmitPower(7)
-radio.setTransmitSerialNumber(true)
-Sensors.SetLightLevel()
+radio.setGroup(12);
+radio.setFrequencyBand(39);
+radio.setTransmitPower(7);
+radio.setTransmitSerialNumber(true);
+Sensors.SetLightLevel();
 
 type drivingSignal = {
     x: number;
     y: number;
     z: number
-}
+};
 type lightDirection = {
     c: DigitalPin;
     r: DigitalPin;
     l: DigitalPin
-}
+};
 type data = {
     c: number;
     r: number;
     l: number
-}
+};
 
 const IR: lightDirection = {
     c: DigitalPin.P15,
     r: DigitalPin.P13,
     l: DigitalPin.P14
-}
+};
 
 let expectedSender = 599237509;
 let ready: boolean;
