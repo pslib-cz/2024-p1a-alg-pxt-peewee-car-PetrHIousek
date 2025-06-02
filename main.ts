@@ -27,8 +27,6 @@ radio.onReceivedString(function (received: string) {
             x = parseInt(parts[0])
             y = parseInt(parts[1])
             z = parseInt(parts[2])  // zatím se nepoužívá
-            // Převrácení osy Y
-            y = -y
 
             // Výpočet základních rychlostí
             let leftSpeed = y / 4
