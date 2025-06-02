@@ -16,7 +16,7 @@ radio.onReceivedString(function (received: string) {
             ready = false
             basic.pause(1000)
             PCAmotor.MotorStopAll()
-            basic.showString("G")
+            basic.showString("G", 0)
         } else ready = true
         if(ready) {
             basic.clearScreen()
