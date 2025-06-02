@@ -65,13 +65,11 @@ radio.onReceivedString(function (received: string) {
             }
             drivingPackage.x = parseInt(parts[0])
             drivingPackage.y = parseInt(parts[1])
-            drivingPackage.z = parseInt(parts[2])  // zatím se nepoužívá
+            drivingPackage.z = parseInt(parts[2])
 
-            // Výpočet základních rychlostí
             let leftSpeed = drivingPackage.y / 4
             let rightSpeed = drivingPackage.y / 4
 
-            // Úprava pro zatáčení podle X
             if (drivingPackage.x > 100) {
                 leftSpeed += drivingPackage.x / 10
                 rightSpeed -= drivingPackage.x / 2
@@ -80,7 +78,6 @@ radio.onReceivedString(function (received: string) {
                 rightSpeed -= drivingPackage.x / 2
             }
 
-            // Ovládání motorů PeeWee
             PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
             PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
         }
