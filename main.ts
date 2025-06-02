@@ -33,8 +33,6 @@ radio.onReceivedString(function (received: string) {
             y = parseInt(parts[1])
             z = parseInt(parts[2])
 
-            y = -y
-
             leftSpeed = y / 4
             rightSpeed = y / 4
 
