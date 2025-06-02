@@ -4,6 +4,12 @@ radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
 Sensors.SetLightLevel()
 
+type lightDirection = {
+    center: number;
+    right: number;
+    left: number
+}
+
 let expectedSender = 599237509;
 let ready: boolean;
 let y: number
@@ -13,6 +19,9 @@ let leftSpeed: number
 let rightSpeed: number
 let parts
 let sender
+
+pins.setPull(DigitalPin.P8, PinPullMode.PullNone)
+pins.digitalReadPin(DigitalPin.P8)
 
 radio.onReceivedString(function (received: string) {
     sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
