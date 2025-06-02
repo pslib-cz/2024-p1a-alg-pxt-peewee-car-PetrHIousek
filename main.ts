@@ -27,9 +27,26 @@ const IR: lightDirection = {
 
 let expectedSender = -1584843917;
 let ready: boolean;
-let y
-let z
-let x
+let drivingPackage: drivingSignal;
+let leftSpeed: number;
+let rightSpeed: number;
+let parts;
+let sender;
+let dataPack: data;
+
+pins.setPull(DigitalPin.P8, PinPullMode.PullNone)
+pins.digitalReadPin(DigitalPin.P8)
+pins.setPull(IR.c, PinPullMode.PullNone)
+pins.setPull(IR.r, PinPullMode.PullNone)
+pins.setPull(IR.l, PinPullMode.PullNone)
+
+basic.forever(function () {
+    dataPack.c = pins.digitalReadPin(IR.c)
+    dataPack.r = pins.digitalReadPin(IR.r)
+    dataPack.l = pins.digitalReadPin(IR.l)
+    basic.pause(20)
+})
+
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
@@ -46,21 +63,21 @@ radio.onReceivedString(function (received: string) {
             if (parts.length != 3) {
                 return
             }
-            x = parseInt(parts[0])
-            y = parseInt(parts[1])
-            z = parseInt(parts[2])  // zatím se nepoužívá
+            drivingPackage.x = parseInt(parts[0])
+            drivingPackage.y = parseInt(parts[1])
+            drivingPackage.z = parseInt(parts[2])  // zatím se nepoužívá
 
             // Výpočet základních rychlostí
-            let leftSpeed = y / 4
-            let rightSpeed = y / 4
+            let leftSpeed = drivingPackage.y / 4
+            let rightSpeed = drivingPackage.y / 4
 
             // Úprava pro zatáčení podle X
-            if (x > 100) {
-                leftSpeed += x / 10
-                rightSpeed -= x / 2
-            } else if (x < -100) {
-                leftSpeed += x / 10
-                rightSpeed -= x / 2
+            if (drivingPackage.x > 100) {
+                leftSpeed += drivingPackage.x / 10
+                rightSpeed -= drivingPackage.x / 2
+            } else if (drivingPackage.x < -100) {
+                leftSpeed += drivingPackage.x / 10
+                rightSpeed -= drivingPackage.x / 2
             }
 
             // Ovládání motorů PeeWee
