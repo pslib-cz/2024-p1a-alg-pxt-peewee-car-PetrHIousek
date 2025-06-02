@@ -10,10 +10,11 @@ type drivingSignal = {
     z: number
 }
 type lightDirection = {
-    center: number;
-    right: number;
-    left: number
+    c: number;
+    r: number;
+    l: number
 }
+
 
 let expectedSender = 599237509;
 let ready: boolean;
