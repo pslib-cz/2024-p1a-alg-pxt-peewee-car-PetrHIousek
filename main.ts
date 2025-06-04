@@ -67,8 +67,8 @@ radio.onReceivedString(function (received: string) {
             drivingPackage.y = parseInt(parts[1])
             drivingPackage.z = parseInt(parts[2])
 
-            let leftSpeed = drivingPackage.y / 4
-            let rightSpeed = drivingPackage.y / 4
+            leftSpeed = drivingPackage.y / 4
+            rightSpeed = drivingPackage.y / 4
 
             if (drivingPackage.x > 100) {
                 leftSpeed += drivingPackage.x / 10
