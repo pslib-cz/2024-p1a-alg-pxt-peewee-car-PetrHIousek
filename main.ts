@@ -12,7 +12,7 @@ type lightDirection = {
     c: DigitalPin;
     r: DigitalPin;
     l: DigitalPin
-};
+};//
 type data = {
     c: number;
     r: number;
