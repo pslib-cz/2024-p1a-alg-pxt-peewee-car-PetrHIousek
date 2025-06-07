@@ -26,7 +26,7 @@ radio.onReceivedString(function (received: string) {
             }
             x = parseInt(parts[0])
             y = parseInt(parts[1])
-            z = parseInt(parts[2])  // zatím se nepoužívá
+            z = parseInt(parts[2])
 
             // Výpočet základních rychlostí
             let leftSpeed = y / 4
@@ -41,7 +41,6 @@ radio.onReceivedString(function (received: string) {
                 rightSpeed -= x / 2
             }
 
-            // Ovládání motorů PeeWee
             PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
             PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
         }
