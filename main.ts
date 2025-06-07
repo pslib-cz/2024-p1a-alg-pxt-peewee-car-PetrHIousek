@@ -32,20 +32,20 @@ radio.onReceivedString(function (received: string) {
             z = parseInt(parts[2])
 
             // Výpočet základních rychlostí
-            leftSpeed = y / 4
-            rightSpeed = y / 4
+            leftSpeed = y / 3.5
+            rightSpeed = y / 3.5
 
             // Úprava pro zatáčení podle X
             if (x > 100) {
                 leftSpeed += x / 10
-                rightSpeed -= x / 2
+                rightSpeed -= x / 8
             } else if (x < -100) {
                 leftSpeed += x / 10
-                rightSpeed -= x / 2
+                rightSpeed -= x / 8
             }
 
             PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
-            PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
+            PCAmotor.MotorRun(PCAmotor.Motors.M4, rightSpeed)
         }
     }
 })
