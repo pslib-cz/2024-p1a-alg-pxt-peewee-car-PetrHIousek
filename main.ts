@@ -5,9 +5,12 @@ radio.setTransmitSerialNumber(true)
 
 let expectedSender = -1584843917;
 let ready: boolean;
-let y
-let z
-let x
+let y;
+let z;
+let x;
+let parts;
+let leftSpeed;
+let rightSpeed;
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
@@ -20,7 +23,7 @@ radio.onReceivedString(function (received: string) {
         } else ready = true
         if(ready) {
             basic.clearScreen()
-            let parts = received.split(",")
+            parts = received.split(",")
             if (parts.length != 3) {
                 return
             }
@@ -29,8 +32,8 @@ radio.onReceivedString(function (received: string) {
             z = parseInt(parts[2])
 
             // Výpočet základních rychlostí
-            let leftSpeed = y / 4
-            let rightSpeed = y / 4
+            leftSpeed = y / 4
+            rightSpeed = y / 4
 
             // Úprava pro zatáčení podle X
             if (x > 100) {
