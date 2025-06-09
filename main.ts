@@ -30,8 +30,6 @@ let ready: boolean;
 let drivingPackage: drivingSignal;
 let leftSpeed: number;
 let rightSpeed: number;
-let parts;
-let sender;
 let dataPack: data;
 
 pins.setPull(DigitalPin.P8, PinPullMode.PullNone)
@@ -47,39 +45,3 @@ basic.forever(function () {
     basic.pause(20)
 })
 
-
-radio.onReceivedString(function (received: string) {
-    let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
-    if (sender == expectedSender) {
-        if (received === "stop") {
-            ready = false
-            basic.pause(60)
-            PCAmotor.MotorStopAll()
-            basic.showString("G", 0)
-        } else ready = true
-        if (ready) {
-            basic.clearScreen()
-            let parts = received.split(",")
-            if (parts.length != 3) {
-                return
-            }
-            drivingPackage.x = parseInt(parts[0])
-            drivingPackage.y = parseInt(parts[1])
-            drivingPackage.z = parseInt(parts[2])
-
-            leftSpeed = drivingPackage.y / 4
-            rightSpeed = drivingPackage.y / 4
-
-            if (drivingPackage.x > 100) {
-                leftSpeed += drivingPackage.x / 10
-                rightSpeed -= drivingPackage.x / 2
-            } else if (drivingPackage.x < -100) {
-                leftSpeed += drivingPackage.x / 10
-                rightSpeed -= drivingPackage.x / 2
-            }
-
-            PCAmotor.MotorRun(PCAmotor.Motors.M1, -leftSpeed)
-            PCAmotor.MotorRun(PCAmotor.Motors.M4, -rightSpeed)
-        }
-    }
-})
