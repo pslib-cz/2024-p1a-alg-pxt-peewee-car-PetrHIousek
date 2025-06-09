@@ -1,5 +1,5 @@
 radio.setGroup(12)
-radio.setFrequencyBand(39)
+//radio.setFrequencyBand(39)
 radio.setTransmitPower(7)
 radio.setTransmitSerialNumber(true)
 
@@ -28,9 +28,19 @@ const IR: lightDirection = {
 let expectedSender = -1584843917;
 let ready: boolean;
 let drivingPackage: drivingSignal;
-let leftSpeed: number;
-let rightSpeed: number;
-let dataPack: data;
+let dataPack: lightDirection;
+let dataQuack: data;
+let speed: number = 220;
+
+function driveGo(bool: lightDirection, driver:data) {
+    if (driver.c === 1) {
+        
+
+    } else {
+        PCAmotor.MotorRun(PCAmotor.Motors.M1, speed)
+        PCAmotor.MotorRun(PCAmotor.Motors.M2, speed)
+    }
+}
 
 pins.setPull(DigitalPin.P8, PinPullMode.PullNone)
 pins.digitalReadPin(DigitalPin.P8)
@@ -42,6 +52,9 @@ basic.forever(function () {
     dataPack.c = pins.digitalReadPin(IR.c)
     dataPack.r = pins.digitalReadPin(IR.r)
     dataPack.l = pins.digitalReadPin(IR.l)
+
+    driveGo(dataPack, dataQuack)
+
     basic.pause(20)
 })
 
