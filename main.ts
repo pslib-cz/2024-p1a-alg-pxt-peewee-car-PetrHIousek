@@ -8,7 +8,7 @@ type drivingSignal = {
     y: number;
     z: number
 };
-/* type lightDirection = {
+type lightDirection = {
     c: DigitalPin;
     r: DigitalPin;
     l: DigitalPin
@@ -23,7 +23,7 @@ const IR: lightDirection = {
     c: DigitalPin.P15,
     r: DigitalPin.P13,
     l: DigitalPin.P14
-}; */
+};
 
 let expectedSender = -1584843917;
 let ready: boolean;
@@ -32,7 +32,7 @@ let leftSpeed: number;
 let rightSpeed: number;
 let parts;
 let sender;
-/* let dataPack: data;
+let dataPack: data;
 
 pins.setPull(DigitalPin.P8, PinPullMode.PullNone)
 pins.digitalReadPin(DigitalPin.P8)
@@ -46,7 +46,7 @@ basic.forever(function () {
     dataPack.l = pins.digitalReadPin(IR.l)
     basic.pause(20)
 })
- */
+
 
 radio.onReceivedString(function (received: string) {
     let sender = radio.receivedPacket(RadioPacketProperty.SerialNumber)
